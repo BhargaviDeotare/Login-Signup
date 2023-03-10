@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./login.css";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setLoginUser }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     email: "",
@@ -23,7 +23,7 @@ const Login = ({ setLoginUser }) => {
     axios.post("http://localhost:9002/login", user).then((res) => {
       alert(res.data.message);
       setLoginUser(res.data.user);
-      history.push("/");
+      navigate("/");
     });
   };
 
@@ -48,7 +48,7 @@ const Login = ({ setLoginUser }) => {
         Login
       </div>
       <div>or</div>
-      <div className="button" onClick={() => history.push("/register")}>
+      <div className="button" onClick={() => navigate.push("/register")}>
         Register
       </div>
     </div>
