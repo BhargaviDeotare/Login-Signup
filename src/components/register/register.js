@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./register.css";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 const Register = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     name: "",
@@ -26,7 +26,7 @@ const Register = () => {
     if (name && email && password && password === reEnterPassword) {
       axios.post("http://localhost:9002/register", user).then((res) => {
         alert(res.data.message);
-        history.push("/login");
+        navigate("/login");
       });
     } else {
       alert("invlid input");
@@ -69,7 +69,7 @@ const Register = () => {
         Register
       </div>
       <div>or</div>
-      <div className="button" onClick={() => history.push("/login")}>
+      <div className="button" onClick={() => navigate("/login")}>
         Login
       </div>
     </div>
